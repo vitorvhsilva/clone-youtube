@@ -6,9 +6,11 @@ import Sports from '../../assets/sports.png'
 import Entertainment from '../../assets/entertainment.png'
 import Tech from '../../assets/tech.png'
 import Music from '../../assets/music.png'
-import Blogs from '../../assets/blogs.png'
 import News from '../../assets/news.png'
-import Jack from '../../assets/jack.png'
+import YunkVino from '../../assets/yunkvino.jpeg'
+import Nemzzz from '../../assets/nemzzz.jpeg'
+import TheBoy from '../../assets/theboy.jpg'
+import Brent from '../../assets/brentfaiyaz.jpg'
 
 const Sidebar = ({sidebar}) => {
   return (
@@ -36,9 +38,6 @@ const Sidebar = ({sidebar}) => {
           <img src={Music} alt="" /> <p>Música</p>
         </div>
         <div className="side-link">
-          <img src={Blogs} alt="" /> <p>Blogs</p>
-        </div>
-        <div className="side-link">
           <img src={News} alt="" /> <p>Notícias</p>
         </div>
         <hr />
@@ -46,19 +45,16 @@ const Sidebar = ({sidebar}) => {
       <div className="subscribed-list">
         <h3>Inscrições</h3>
         <div className="side-link">
-          <img src={Jack} alt="" /> <p>PewDiePie</p>
+          <img src={YunkVino} alt="" /> <p>Yunk Vino</p>
         </div>
         <div className="side-link">
-          <img src={Jack} alt="" /> <p>PewDiePie</p>
+          <img src={TheBoy} alt="" /> <p>THE BOY</p>
         </div>
         <div className="side-link">
-          <img src={Jack} alt="" /> <p>PewDiePie</p>
+          <img src={Nemzzz} alt="" /> <p>Nemzzz</p>
         </div>
         <div className="side-link">
-          <img src={Jack} alt="" /> <p>PewDiePie</p>
-        </div>
-        <div className="side-link">
-          <img src={Jack} alt="" /> <p>PewDiePie</p>
+          <img src={Brent} alt="" /> <p>Brent Faiyaz</p>
         </div>
       </div>
     </div>

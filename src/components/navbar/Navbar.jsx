@@ -4,7 +4,7 @@ import Logo from '../../assets/logo.png'
 import SearchIcon from '../../assets/search.png'
 import UploadIcon from '../../assets/upload.png'
 import NotificationIcon from '../../assets/notification.png'
-import ProfileIcon from '../../assets/jack.png'
+import ProfileIcon from '../../assets/user_profile.jpg'
 
 
 const Navbar = ({setSidebar}) => {
