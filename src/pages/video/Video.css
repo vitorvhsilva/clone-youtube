@@ -1,0 +1,7 @@
+.play-container {
+  background-color: #0f0f0f;
+  padding: 20px 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

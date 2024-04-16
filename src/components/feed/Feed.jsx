@@ -7,114 +7,38 @@ import Thumbnail5 from '../../assets/thumbnail5.png'
 import Thumbnail6 from '../../assets/thumbnail6.png'
 import Thumbnail7 from '../../assets/thumbnail7.png'
 import Thumbnail8 from '../../assets/thumbnail8.png'
+import { Link } from 'react-router-dom'
+import { API_KEY, value_converter } from '../../data'
+import { useState, useEffect } from 'react'
 
 
 
-const Feed = () => {
+const Feed = ({category}) => {
+
+  const [data,setData] = useState([]);
+
+  const fetchData = async () => {
+    const videoList_url = `https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=BR&videoCategoryId=${category}&key=${API_KEY}`
+    await fetch(videoList_url).then(response => response.json()).then(data => setData(data.items))
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [category])
+  
+
   return (
     <div className="feed">
-      <div className='card'>
-        <img src={Thumbnail1} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail2} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail3} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail4} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-
-      
-      <div className='card'>
-        <img src={Thumbnail5} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail6} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail7} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail8} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      
-      <div className='card'>
-        <img src={Thumbnail1} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail2} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail3} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail4} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-
-      
-      <div className='card'>
-        <img src={Thumbnail5} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail6} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail7} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-      <div className='card'>
-        <img src={Thumbnail8} alt="" />
-        <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates, distinctio!</h2>
-        <h3>Lorem, ipsum.</h3>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
-      </div>
-
+      {data.map((item,index) => {
+        return (
+          <Link to={`video/${item.snippet.categoryId}/${item.id}`} className='card'>
+            <img src={item.snippet.thumbnails.medium.url} alt="" />
+            <h2>{item.snippet.title}</h2>
+            <h3>{item.snippet.channelTitle}</h3>
+            <p>{value_converter(item.statistics.viewCount)} views &bull;</p>
+          </Link>
+        )
+      })}
     </div>
   )
 }
