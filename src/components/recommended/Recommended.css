@@ -26,3 +26,9 @@
 .vid-info p {
   color: white;
 }
+
+@media (max-width: 900px) {
+  .recommended {
+    flex-basis: 100%
+  }
+}
